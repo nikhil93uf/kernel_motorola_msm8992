@@ -727,7 +727,7 @@ exit:
 static int msm8994_mclk_event(struct snd_soc_dapm_widget *w,
 		struct snd_kcontrol *kcontrol, int event)
 {
-	int ret;
+	int ret = 0;
 	struct snd_soc_codec *codec = w->codec;
 	pr_debug("%s: event = %d\n", __func__, event);
 

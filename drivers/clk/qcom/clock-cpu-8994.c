@@ -929,7 +929,7 @@ void sanity_check_clock_tree(u32 muxval, struct mux_clk *mux)
 	u32 lfmux_sel = (muxval & LFMUX_MASK) >> LFMUX_SHIFT;
 	int div = 0;
 	void *base = NULL;
-	unsigned long rate;
+	unsigned long rate = 0;
 	struct clk *c;
 	int cur_uv, req_uv;
 	int *uv;
