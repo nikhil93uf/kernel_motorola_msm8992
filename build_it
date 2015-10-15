@@ -1,0 +1,8 @@
+CUR_TC=/home/alok/android/aosp/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
+APPEND=aarch64-linux-android-
+
+### compile kernel
+ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make clark_defconfig
+ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make xconfig
+cp ./.config arch/arm64/configs/clark_defconfig
+ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make CONFIG_DEBUG_SECTION_MISMATCH=y -j16

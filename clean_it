@@ -1,0 +1,6 @@
+CUR_TC=/home/alok/android/aosp/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
+
+### cleaning
+ARCH=arm CROSS_COMPILE=${CUR_TC}aarch64-linux-android- make distclean
+make mrproper
+
