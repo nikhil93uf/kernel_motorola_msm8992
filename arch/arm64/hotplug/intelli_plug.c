@@ -30,8 +30,8 @@
 #include <linux/earlysuspend.h>
 #endif
 
-//#define DEBUG_INTELLI_PLUG
-#undef DEBUG_INTELLI_PLUG
+#define DEBUG_INTELLI_PLUG
+//#undef DEBUG_INTELLI_PLUG
 
 #define INTELLI_PLUG_MAJOR_VERSION	4
 #define INTELLI_PLUG_MINOR_VERSION	0
