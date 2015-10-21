@@ -392,11 +392,11 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_CFLAGS   := -O3 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
-		   -Wno-format-security \
+		   -Wno-format-security -Wno-logical-not-parentheses -Wno-discarded-array-qualifiers \
 		   -fno-delete-null-pointer-checks -fgnu89-inline\
-		-Wno-maybe-uninitialized -Wno-array-bounds \
+		   -Wno-maybe-uninitialized -Wno-switch -Wno-array-bounds -Wno-switch-bool -Wno-memset-transposed-args \
 		   -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -ffast-math \
-       -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
+           	   -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
 		   -fno-aggressive-loop-optimizations
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
