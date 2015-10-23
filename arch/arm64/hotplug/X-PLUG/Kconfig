@@ -1,0 +1,4 @@
+config X_PLUG
+	bool "Hotplugging of cores using a load array"
+	help
+	  This driver is intended for MSM8992 SOCs ONLY

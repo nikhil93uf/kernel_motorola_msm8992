@@ -81,7 +81,7 @@
 
 static struct msm_thermal_data msm_thermal_info;
 static struct delayed_work check_temp_work;
-static bool core_control_enabled;
+static bool core_control_enabled = 1;
 static uint32_t cpus_offlined;
 static cpumask_var_t cpus_previously_online;
 static DEFINE_MUTEX(core_control_mutex);
@@ -4160,7 +4160,10 @@ static ssize_t show_cc_enabled(struct kobject *kobj,
 static ssize_t __ref store_cc_enabled(struct kobject *kobj,
 		struct kobj_attribute *attr, const char *buf, size_t count)
 {
-	int ret = 0;
+	// Disable Core Control. Let the hotplug driver deal with this
+	core_control_enabled = 1;
+
+	/*int ret = 0;
 	int val = 0;
 	uint32_t cpu = 0;
 
@@ -4178,10 +4181,7 @@ static ssize_t __ref store_cc_enabled(struct kobject *kobj,
 		pr_info("Core control enabled\n");
 		cpus_previously_online_update();
 		register_cpu_notifier(&msm_thermal_cpu_notifier);
-		/*
-		 * Re-evaluate thermal core condition, update current status
-		 * and set threshold for all cpus.
-		 */
+		 
 		hotplug_init_cpu_offlined();
 		mutex_lock(&core_control_mutex);
 		update_offline_cores(cpus_offlined);
@@ -4200,7 +4200,7 @@ static ssize_t __ref store_cc_enabled(struct kobject *kobj,
 		unregister_cpu_notifier(&msm_thermal_cpu_notifier);
 	}
 
-done_store_cc:
+done_store_cc:*/
 	return count;
 }
 
