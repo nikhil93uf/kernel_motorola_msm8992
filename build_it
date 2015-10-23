@@ -6,3 +6,10 @@ ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make clark_defconfig
 ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make xconfig
 cp ./.config arch/arm64/configs/clark_defconfig
 ARCH=arm64 CROSS_COMPILE=${CUR_TC}${APPEND} make CONFIG_DEBUG_SECTION_MISMATCH=y -j16
+
+echo "generating device tree..."
+~/android/build_clark_cm/dtbTool -2 -o ~/android/build_clark_cm/dt.img -s 4096 -p ./scripts/dtc/ ./arch/arm/boot/dts/
+
+cp arch/arm64/boot/Image ~/android/build_clark_cm/Image
+~/android/build_clark_cm/make_it.sh
+~/android/build_clark_cm/flash_it.sh
