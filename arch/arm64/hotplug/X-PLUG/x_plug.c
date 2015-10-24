@@ -97,7 +97,6 @@ static void print_cpus_all(void);
 static unsigned int get_average_load(void);
 
 static void target_load_policy(void)	{
-BCL_Hotplug
 	unsigned int curr_load = get_average_load();
 	static signed int check_count = 0;	
 	int scaled_sampler = ((sample_rate * 20 * 5)/1000);
