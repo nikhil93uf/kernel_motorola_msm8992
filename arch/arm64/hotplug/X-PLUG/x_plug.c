@@ -48,16 +48,16 @@ typedef enum {
 static unsigned int sample_rate = 250;		/* msec */
 static unsigned int max_cpus = 6;
 static unsigned int min_cpus = 1;
-static unsigned int touch_boost_enabled = 1;
+static unsigned int touch_boost_enabled = 0;
 
 /* 1 - target_load; 2 - target_thermal; 3 - target_history; 4 - target_predict */
-static unsigned int policy = 1;		
+static unsigned int policy = 4;		
 static void policy_function(void (*cpu_policy)(void))	{	cpu_policy();	}
 
 /* target_load parameters */	
 static unsigned int target_load = 40;
-static unsigned int dispatch_rate = 2;
-static unsigned int biased_down_up = 0; /* 0 - Offline faster; 1 - Online faster */
+static unsigned int dispatch_rate = 5;
+static unsigned int biased_down_up = 1; /* 0 - Offline faster; 1 - Online faster */
 static void target_load_policy(void);
 
 /* target_predict */
@@ -97,7 +97,7 @@ static void print_cpus_all(void);
 static unsigned int get_average_load(void);
 
 static void target_load_policy(void)	{
-
+BCL_Hotplug
 	unsigned int curr_load = get_average_load();
 	static signed int check_count = 0;	
 	int scaled_sampler = ((sample_rate * 20 * 5)/1000);
@@ -205,7 +205,7 @@ static void __cpuinit xplug_work_fn(struct work_struct *work)
 	unsigned int cpu = nr_cpu_ids;
 
 	if(isSuspended)
-		
+		return;
 
 	mutex_lock(&xplug_work_lock);
 
@@ -250,6 +250,7 @@ static void __cpuinit xplug_work_fn(struct work_struct *work)
 		}
 		else	{
 			cpu_down(cpu);
+			curr_index--;
 		}
 	}
 
