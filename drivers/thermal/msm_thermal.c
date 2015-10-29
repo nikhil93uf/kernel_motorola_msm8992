@@ -4161,7 +4161,7 @@ static ssize_t __ref store_cc_enabled(struct kobject *kobj,
 		struct kobj_attribute *attr, const char *buf, size_t count)
 {
 	// Disable Core Control. Let the hotplug driver deal with this
-	core_control_enabled = 1;
+	core_control_enabled = 0;
 
 	/*int ret = 0;
 	int val = 0;
